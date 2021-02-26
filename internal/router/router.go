@@ -1,7 +1,20 @@
 package router
 
 import (
-	"github.com/gorilla/mux"
+    "net/http"
+    "log"
+    "github.com/gorilla/mux"
 )
 
-var Router = mux.NewRouter()
+func YourHandler(w http.ResponseWriter, r *http.Request) {
+    w.Write([]byte("Gorilla!\n"))
+}
+
+func main() {
+    Router := mux.NewRouter()
+    // Routes consist of a path and a handler function.
+    Router.HandleFunc("/", YourHandler)
+
+    // Bind to a port and pass our router in
+    log.Fatal(http.ListenAndServe(":8080", Router))
+}
