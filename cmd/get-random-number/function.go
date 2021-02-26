@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	RandomNumberGetSource = "https://www.random.org/sequences/?min=1&max=52&col=1&format=plain&rnd=new"
+	RandomNumberGetSource = "https://www.random.org/sequences/?min=1&max=8&col=1&format=plain&rnd=new"
 )
 
 var (
