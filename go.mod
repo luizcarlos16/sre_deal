@@ -1,4 +1,4 @@
-module github.com/testing/sre-test-1
+module github.com/luizcarlos16/sre_deal
 
 go 1.13
 

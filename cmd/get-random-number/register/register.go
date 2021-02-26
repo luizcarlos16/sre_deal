@@ -1,8 +1,8 @@
 package register
 
 import (
-	getrandomnumber "github.com/testing/sre-test-1/cmd/get-random-number"
-	"github.com/testing/sre-test-1/internal/router"
+	getrandomnumber "github.com/luizcarlos16/sre_deal/cmd/get-random-number"
+	"github.com/luizcarlos16/sre_deal/internal/router"
 )
 
 func init() {

@@ -8,10 +8,10 @@ import (
 	"syscall"
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	_ "github.com/testing/sre-test-1/cmd/get-random-number/register"
+	_ "github.com/luizcarlos16/sre_deal/cmd/get-random-number/register"
 
-	"github.com/testing/sre-test-1/internal/config"
-	"github.com/testing/sre-test-1/internal/router"
+	"github.com/luizcarlos16/sre_deal/internal/config"
+	"github.com/luizcarlos16/sre_deal/internal/router"
 )
 
 func init() {

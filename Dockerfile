@@ -7,6 +7,4 @@ ENV GO111MODULE=on
 
 RUN cd cmd && go build -o /bin/cmd
 
-Expose 8080
-
 ENTRYPOINT ["/bin/cmd"]
