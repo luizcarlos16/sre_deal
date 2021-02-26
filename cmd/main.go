@@ -40,7 +40,8 @@ func main() {
 	config.Register().Load()
 
 	serviceServer := http.NewServeMux()
-	serviceServer.Handle("/", router.Router)
+	serviceServer.Handle("/", router.Router2)
+	serviceServer.Handle("/random-number", router.Router)
 
 	go func() {
 		address := config.Get("http-service-listen-address").GetStringVal()

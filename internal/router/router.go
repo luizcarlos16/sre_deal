@@ -5,3 +5,4 @@ import (
 )
 
 var Router = mux.NewRouter()
+var Router2 = mux.NewRouter()

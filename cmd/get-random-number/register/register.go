@@ -6,5 +6,6 @@ import (
 )
 
 func init() {
-	router.Router.HandleFunc("/get-random-number", getrandomnumber.GetRandomNumber)
+	router.Router.HandleFunc("/random-number", getrandomnumber.GetRandomNumber)
+	router.Router2.HandleFunc("/get-random-number", getrandomnumber.GetRandomNumber)
 }
