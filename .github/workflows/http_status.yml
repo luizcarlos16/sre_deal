@@ -10,6 +10,6 @@ jobs:
     - name: Check http status code of production site
       uses: lakuapik/gh-actions-http-status@v1
       with:
-        sites: '["http://3.15.185.236:9090/metrics", "https://github.com"]'
-        expected: '[200, 200]'
+        sites: '["http://3.15.185.236:8080/random-number", "http://3.15.185.236:8080/get-random-number", "http://3.15.185.236:9090/metrics"]'
+        expected: '[200, 200, 200]'
     # ... uses ....
