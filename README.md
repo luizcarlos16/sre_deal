@@ -1,3 +1,3 @@
-# sre-test-1
+# sre_deal
 
 - [pt-br](docs/pt-br/README.md)
