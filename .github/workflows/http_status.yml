@@ -10,6 +10,6 @@ jobs:
     - name: Check http status code of production site
       uses: lakuapik/gh-actions-http-status@v1
       with:
-        sites: '["http://0.0.0.0:8080/random-number", "http://0.0.0.0:9090/metrics"]'
+        sites: '["http://localhost:8080/random-number", "http://localhost:9090/metrics"]'
         expected: '[301, 200]'
     # ... uses ....
