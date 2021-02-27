@@ -1,0 +1,16 @@
+name: Workflow for checking http status codes
+
+on: [push]
+
+jobs:
+  build:
+    name: HTTP Status
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+      - name: Check HTTP status of production site
+        uses: ./
+        with:
+          sites: '["http://localhost:8080/random-number", "http://localhost:9090/metrics"]'
+          expected: '[301, 200]'
