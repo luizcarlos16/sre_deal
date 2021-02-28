@@ -36,7 +36,7 @@ Crie um repositório privado na sua conta no GitHub e adicione os usuários que 
 
 ## Para configurar seu repositório
 
-- [ ] Realize a substituição de todas as strings `luizcarlos16/sre_deal` por `SEU_USUARIO_GIT/NOME_DO_SEU_REPOSITÓRIO` criando um script para fazer essa tarefa (na linguagem de sua escolha).
+- [ ] Realize a substituição de todas as strings `testing/sre-test-1` por `SEU_USUARIO_GIT/NOME_DO_SEU_REPOSITÓRIO` criando um script para fazer essa tarefa (na linguagem de sua escolha).
 - [ ] Faça o commit e push da alteração para seu repositório.
 
 ## To fix
