@@ -4,5 +4,5 @@ import (
 	"github.com/gorilla/mux"
 )
 
-var Router = mux.NewRouter()
+var Router1 = mux.NewRouter()
 var Router2 = mux.NewRouter()

@@ -36,15 +36,15 @@ Crie um repositório privado na sua conta no GitHub e adicione os usuários que 
 
 ## Para configurar seu repositório
 
-- [X] Realize a substituição de todas as strings `luizcarlos16/sre_deal` por `SEU_USUARIO_GIT/NOME_DO_SEU_REPOSITÓRIO` criando um script para fazer essa tarefa (na linguagem de sua escolha).
-- [X] Faça o commit e push da alteração para seu repositório.
+- [ ] Realize a substituição de todas as strings `luizcarlos16/sre_deal` por `SEU_USUARIO_GIT/NOME_DO_SEU_REPOSITÓRIO` criando um script para fazer essa tarefa (na linguagem de sua escolha).
+- [ ] Faça o commit e push da alteração para seu repositório.
 
 ## To fix
 
-- [X] Aplicação não está realizando build da imagem Docker.
+- [ ] Aplicação não está realizando build da imagem Docker.
 - [ ] Não temos logs no pipeline ou alertas indicando sucesso do teste funcional.
-- [X] Existe um step no pipeline em que realizamos um teste funcional realizando o request para http://localhost:8080/random-number e validamos a resposta, verificar se o teste feito aqui realmente garante que o endpoint está respondendo devidamente.
-- [X] Criar o mesmo teste funcional para a rota `/metrics` da porta **9090**.
+- [ ] Existe um step no pipeline em que realizamos um teste funcional realizando o request para http://localhost:8080/random-number e validamos a resposta, verificar se o teste feito aqui realmente garante que o endpoint está respondendo devidamente.
+- [ ] Criar o mesmo teste funcional para a rota `/metrics` da porta **9090**.
 
 ## To do
 
