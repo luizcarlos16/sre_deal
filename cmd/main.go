@@ -6,18 +6,17 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	
-	"github.com/prometheus/client_golang/prometheus/promhttp"
+
 	_ "github.com/luizcarlos16/sre_deal/cmd/get-random-number/register"
 
 	"github.com/luizcarlos16/sre_deal/internal/config"
 	"github.com/luizcarlos16/sre_deal/internal/router"
-	
-	"fmt"
-	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
-	
+
+	"github.com/gorilla/mux"
+	"github.com/prometheus/client_golang/prometheus/promauto"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func init() {
@@ -39,6 +38,24 @@ func init() {
 }
 
 var (
+	httpDuration = promauto.NewHistogramVec(prometheus.HistogramOpts{
+		Name: "myapp_http_duration_seconds",
+		Help: "Duration of HTTP requests.",
+	}, []string{"path"})
+)
+
+// prometheusMiddleware implements mux.MiddlewareFunc.
+func prometheusMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		route := mux.CurrentRoute(r)
+		path, _ := route.GetPathTemplate()
+		timer := prometheus.NewTimer(httpDuration.WithLabelValues(path))
+		next.ServeHTTP(w, r)
+		timer.ObserveDuration()
+	})
+}
+
+var (
 	requestCount = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Name: "http_request_count_total",
 		Help: "Counter of HTTP requests made.",
@@ -54,17 +71,6 @@ var (
 		Buckets: []float64{0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20},
 	}, []string{"code", "method"})
 )
-
-func init() {
-	prometheus.MustRegister(requestCount)
-	prometheus.MustRegister(requestDuration)
-	prometheus.MustRegister(responseSize)
-}
-
-func handler(w http.ResponseWriter, r *http.Request) {
-	time.Sleep(1 * time.Second)
-	fmt.Fprintf(w, "OK\n")
-}
 
 func main() {
 
@@ -86,23 +92,10 @@ func main() {
 			log.Fatalln(err)
 		}
 	}()
-	
-	metricsServer := http.NewServeMux()
-	metricsServer.Handle("/metrics", promhttp.Handler())
 
-	wrapHandler := promhttp.InstrumentHandlerCounter(
-		requestCount,
-		promhttp.InstrumentHandlerDuration(
-			requestDuration,
-			promhttp.InstrumentHandlerResponseSize(responseSize, http.HandlerFunc(handler)),
-		),
-	)
-	http.Handle("/", wrapHandler)
-	http.Handle("/metrics", promhttp.Handler())
-	fmt.Println("metrics server started on: https://localhost:9090")
-
-	http.ListenAndServe(":9090", nil)
-	
+	metricsServer := mux.NewRouter()
+	metricsServer.Use(prometheusMiddleware)
+	metricsServer.Path("/metrics").Handler(promhttp.Handler())
 
 	//func que mostra o endereço no logs do docker
 	go func() {
